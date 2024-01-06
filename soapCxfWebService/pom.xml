@@ -65,12 +65,14 @@
 						<id>generate-sources</id>
 						<phase>generate-sources</phase>
 						<configuration>
+							<!--Localització classes java autogenerades-->
 							<sourceRoot>
-								${project.build.directory}/generated-sources/cxf</sourceRoot>
+								${project.build.directory}/src/generated/java</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
+									<!--Localització fitxer wsdl-->
 									<wsdl>
-										${basedir}/src/main/resources/myService.wsdl</wsdl>
+										${basedir}/src/main/resources/wsdl/calculatorApi.wsdl</wsdl>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
