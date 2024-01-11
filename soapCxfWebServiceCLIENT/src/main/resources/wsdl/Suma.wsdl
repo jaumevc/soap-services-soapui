@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tns="http://jaume.cat/Suma/" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+name="Suma" targetNamespace="http://jaume.cat/Suma/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://jaume.cat/Suma/">
+      <xsd:element name="Sumar">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="parametreA" type="xsd:int" />
+          	<xsd:element name="parametreB" type="xsd:int"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SumarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sumaParametres" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SumarRequest">
+    <wsdl:part element="tns:Sumar" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SumarResponse">
+    <wsdl:part element="tns:SumarResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="Suma">
+    <wsdl:operation name="Sumar">
+      <wsdl:input message="tns:SumarRequest"/>
+      <wsdl:output message="tns:SumarResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SumaSOAP" type="tns:Suma">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Sumar">
+      <soap:operation soapAction="http://jaume.cat/Suma/Sumar"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Suma">
+    <wsdl:port binding="tns:SumaSOAP" name="SumaSOAP">
+<!--       <soap:address location="http://www.example.org/"/> -->
+      <soap:address location="http://localhost:8080/services/soap/Suma"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
